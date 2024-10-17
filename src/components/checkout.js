@@ -6,11 +6,19 @@ const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Access the cart data and total bill from the route's state
   const { cartItems, totalBill } = location.state || { cartItems: [], totalBill: 0 };
 
   const handleGoBack = () => {
     navigate(-1); // Go back to the previous page (CartTab)
+  };
+
+  const handleProceedToPayment = () => {
+    navigate('/razorpay', {
+      state: {
+        cartItems,
+        totalBill,
+      },
+    });
   };
 
   return (
@@ -35,7 +43,7 @@ const Checkout = () => {
         <button className="bg-blue-500 text-white px-4 py-2 mr-2" onClick={handleGoBack}>
           Back to Cart
         </button>
-        <button className="bg-green-500 text-white px-4 py-2">
+        <button className="bg-green-500 text-white px-4 py-2" onClick={handleProceedToPayment}>
           Proceed to Payment
         </button>
       </div>

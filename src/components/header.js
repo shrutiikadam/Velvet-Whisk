@@ -19,6 +19,7 @@ const Header = () => {
   return (
     <header className='flex justify-between items-center mb-5'>
     <Link to="/" className="text-white bg-black px-4 py-2 rounded-md text-xl font-semibold hover:bg-gray-700 transition duration-300">HOME</Link>
+    <Link to="/about" className="text-white bg-black px-4 py-2 rounded-md text-xl font-semibold hover:bg-gray-700 transition duration-300">ABOUT</Link>
         <div className='w-10 h-10 bg-gray-100 rounded-full
         flex justify-center items-center relative' onClick={handleOpenTabCart}>
             <img src={iconCart} alt="" className='w-6'/>
