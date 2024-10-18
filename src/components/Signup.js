@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { auth, googleProvider } from "../firebaseConfig";  // Import googleProvider
+import { auth, googleProvider } from "../firebaseConfig";
 import { createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import '../App.css';
+import './Signup.css'; // Import the CSS file
 
-const Signup = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -40,11 +40,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="form-container">
-      <h2>Sign Up</h2>
+    <div className="sign-up-container">
+      <h2 className="sign-up-heading">Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
+          className="sign-up-input"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +53,7 @@ const Signup = () => {
         />
         <input
           type="password"
+          className="sign-up-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -59,18 +61,19 @@ const Signup = () => {
         />
         <input
           type="password"
+          className="sign-up-input"
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="sign-up-button">Sign Up</button>
       </form>
-      <button className="google-btn" onClick={handleGoogleSignUp}>
+      <button className="sign-up-google-btn" onClick={handleGoogleSignUp}>
         Continue with Google
       </button>
     </div>
   );
 };
 
-export default Signup;
+export default SignUp;
