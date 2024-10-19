@@ -16,33 +16,34 @@ const CartTab = () => {
   };
 
   const handleCheckout = () => {
-    // Calculate the correct total based on item prices and quantities
     const cartItemsWithDetails = carts.map(item => {
-      const productDetail = products.find(product => product.id === item.productId);
-      const price = productDetail ? productDetail.price : 0; // Default to 0 if product not found
+        const productDetail = products.find(product => product.id === item.productId);
+        const price = productDetail ? productDetail.price : 0; 
 
-      return {
-        ...item,
-        name: productDetail ? productDetail.name : 'Unknown Product',
-        image: productDetail ? productDetail.image : '',
-        price: price, // Include price for each item
-      };
+        return {
+            ...item,
+            name: productDetail ? productDetail.name : 'Unknown Product',
+            image: productDetail ? productDetail.image : '',
+            price: price,
+        };
     });
 
     const totalBill = cartItemsWithDetails.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
+        (sum, item) => sum + item.price * item.quantity,
+        0
     );
+
 
     dispatch(toggleStatusTab());
 
     navigate('/checkout', {
-      state: {
-        cartItems: cartItemsWithDetails,
-        totalBill: totalBill,
-      },
+        state: {
+            cartItems: cartItemsWithDetails,
+            totalBill: totalBill,
+        },
     });
-  };
+};
+
 
   const handleClearCart = () => {
     dispatch(clearCart()); // Clear the cart

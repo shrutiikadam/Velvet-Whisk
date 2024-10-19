@@ -216,6 +216,7 @@ header ul{
 }
 
 .auth-buttons {
+    padding-top: 20px;
     display: flex;                    /* Align buttons in a row */
     justify-content: center;          /* Center buttons horizontally */
     gap: 15px;                        /* Space between buttons */
@@ -223,11 +224,15 @@ header ul{
 }
 
 .auth-buttons button {
-    padding: 12px 24px;              /* Button padding */
-    font-size: 1rem;                 /* Font size */
+    
+    font-family: "Lato", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+    padding: 10px 18px;              /* Button padding */
+    font-size: 1.1rem;                 /* Font size */
     border: none;                    /* Remove default border */
     border-radius: 5px;              /* Rounded corners */
-    background-color: #007bff;      /* Button background color */
+    background-color: #ff0000;      /* Button background color */
     color: white;                    /* Text color */
     cursor: pointer;                 /* Change cursor to pointer on hover */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
@@ -235,7 +240,7 @@ header ul{
 }
 
 .auth-buttons button:hover {
-    background-color: #0056b3;       /* Darker blue on hover */
+    background-color: #00b37d;       /* Darker blue on hover */
     transform: translateY(-2px);    /* Lift effect on hover */
 }
 

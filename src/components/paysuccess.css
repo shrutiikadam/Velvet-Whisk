@@ -1,15 +1,14 @@
 /* src/components/PaymentSuccess.css */
 .success-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full height of the viewport */
-    background-color: #f0f0f0; /* Optional background color */
-  }
-  
-  .success-message {
-    font-size: 2rem; /* Adjust font size as needed */
-    font-weight: bold;
-    color: #4caf50; /* Optional text color */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of the viewport */
+  background-color: #f0f0f0; /* Optional background color */
+}
+
+.success-message {
+  font-size: 2rem; /* Adjust font size as needed */
+  font-weight: bold;
+  color: #4caf50; /* Optional text color */
+}

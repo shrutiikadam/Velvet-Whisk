@@ -41,7 +41,7 @@ const Razorpay = () => {
     };
 
     // Updated EmailJS configuration with the new service ID, template ID, and user ID
-    emailjs.send('service_cn84d3i', 'template_a0o1nhy', templateParams, '2DARz548nH1T7KPJ7')
+    emailjs.send(key1, key2, templateParams, key3)
       .then((response) => {
         console.log('Email sent successfully:', response);
         alert(`Email confirmation sent successfully to ${userEmail}!`); // Displaying email in alert
@@ -55,7 +55,7 @@ const Razorpay = () => {
   useEffect(() => {
     const handlePayment = () => {
       const options = {
-        key: "rzp_test_22YpxagEoYtImx" , // Accessing the API key from .env
+        key: your_api_key , // Accessing the API key from .env
         amount: totalBill * 100, // Amount is in currency subunits (100 paise = 1 INR)
         currency: "INR",
         name: "Velvet & Whisk",
