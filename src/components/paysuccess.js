@@ -19,10 +19,7 @@ const PaymentSuccess = () => {
   const userName = extractFirstNameFromEmail(userEmail);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-purple-200
-
-
- to-blue-300">
+    <div className="flex items-center justify-center h-screen bg-purple-200 to-blue-300">
       <div className="bg-white shadow-lg rounded-lg p-12 max-w-lg text-center relative transform transition-transform duration-500 hover:scale-105 hover:shadow-xl">
         <FaCheckCircle className="text-green-400 text-7xl mb-4 animate-bounce" />
         {/* Milk Carton Icon for fun */}
@@ -39,6 +36,7 @@ const PaymentSuccess = () => {
           We appreciate your business! Need anything? Drop us a message anytime.
         </p>
       </div>
+      
     </div>
   );
 };
