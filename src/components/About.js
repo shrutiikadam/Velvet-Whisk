@@ -30,7 +30,7 @@ const About = () => {
 
       <div className="text-container">
       
-        <div className="logo"><img src={logo} alt="Image 2" className="logoimg" />DR2S INDUSTRIES</div>
+        <div className="logo"><img src={logo} alt="Image 2" className="logoimg" />VELVET & WHISK</div>
         <h1 className="main-heading">TASTE THE MAGIC</h1>
         <p className="sub-heading">Experience the enchantment of every drop, where rich flavors and creamy goodness come together in perfect harmony</p>
         <button className="connect-button">GRAB YOUR BLISS</button>
@@ -61,7 +61,7 @@ const About = () => {
           <div className='info-text2'>
           <h2>About us</h2>
           <p>
-          At DR2S Industries, we are passionate about bringing you the finest, most delightful flavored milk that combines the richness of tradition with the innovation of modern taste. Our journey began with a simple mission – to create beverages that not only refresh but also elevate your everyday moments. We carefully select the highest quality ingredients, ensuring that every bottle bursts with the vibrant flavors of almond, pista, mango, and rose. Our commitment to excellence and love for what we do drives us to continuously craft products that deliver both health and indulgence. Join us on a flavorful adventure, where each sip is a step into a world of pure taste and natural goodness!
+          At VELVET & WHISK, we are passionate about bringing you the finest, most delightful flavored milk that combines the richness of tradition with the innovation of modern taste. Our journey began with a simple mission – to create beverages that not only refresh but also elevate your everyday moments. We carefully select the highest quality ingredients, ensuring that every bottle bursts with the vibrant flavors of almond, pista, mango, and rose. Our commitment to excellence and love for what we do drives us to continuously craft products that deliver both health and indulgence. Join us on a flavorful adventure, where each sip is a step into a world of pure taste and natural goodness!
 </p>
           </div>
           <img src={milkcan10} alt="Info" className="info-image2" />
@@ -90,7 +90,7 @@ const About = () => {
           <ion-icon name="logo-instagram"></ion-icon>
         </a></li>
     </ul>
-    <h3 className='footerhead'>DR2S INDUSTRIES</h3>
+    <h3 className='footerhead'>VELVET & WHISK</h3>
     <ul class="menu">
       
       <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
