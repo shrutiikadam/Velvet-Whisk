@@ -4,6 +4,20 @@ body{
     height: 100%;
     
 }
+.logo {
+    font-family: 'Arial', serif; /* Classy serif font */
+    font-size: 3rem; /* Increase font size for more impact */
+    font-weight: 700; /* Bold weight for strong visual presence */
+    color: #3a2c22; /* Darker, richer brown for a more elegant look */
+    letter-spacing: 0.15em; /* Slightly more letter spacing for sophistication */
+    text-transform: uppercase; /* Uppercase for a brand-like feel */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* Deeper shadow for more depth */
+    margin-top: 30px; /* Adds margin from the top */
+    margin-left: 0.1px; /* Shifts the logo slightly to the left */
+    padding: 10px; /* Padding to create space around the logo */
+    display: inline-block; /* Keeps the logo in place */
+  }
+
 header{
     display: flex;
     height: 40px;

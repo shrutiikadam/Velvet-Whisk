@@ -65,7 +65,7 @@ const Main = () => {
   return (
     <div className="App">
       <header>
-        <div>DR2S Industries</div>
+      <div className="logo">      </div>
         <nav>
           <div className="auth-buttons">
             <Link to="/login">

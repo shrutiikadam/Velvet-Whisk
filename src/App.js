@@ -1,7 +1,6 @@
 import './App.css';
 import Layout from './components/layout';
 import Home from './pages/home';
-// import About from './components/About';
 import Detail from './pages/detail';
 import CartTab from './components/cartTab'; // Import CartTab
 import Checkout from './components/checkout'; // Import Checkout
@@ -12,6 +11,7 @@ import Main from './components/Main';
 import Login from './components/Login';
 import SignUp from './components/Signup';
 import About from './components/About';
+import PaymentSuccess from './components/paysuccess';
 
 const App = () => {
   return (
@@ -21,7 +21,7 @@ const App = () => {
         <Route path='/' element={<Main />} />
 
         {/* Other routes wrapped in the Layout component */}
-        <Route path='/layout' element={<Layout />}> {/* Layout route */}
+        <Route path='/home' element={<Layout />}> {/* Layout route */}
           <Route index element={<Home />} />
           </Route>
           <Route path=':slug' element={<Detail />} />
@@ -32,6 +32,7 @@ const App = () => {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/about' element={<About/>}/>
           <Route path='/details' element={<Detail/>}/>
+          <Route path="/payment-success" element={<PaymentSuccess />} />
         
 
         {/* Redirect from old '/main' path to the new root path */}

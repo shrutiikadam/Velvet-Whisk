@@ -17,6 +17,7 @@ const Razorpay = () => {
   const emailJsTemplateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const emailJsUserId = process.env.REACT_APP_EMAILJS_USER_ID;
 
+  // Check user authentication state and get email
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -30,7 +31,9 @@ const Razorpay = () => {
     return () => unsubscribe();
   }, []);
 
+  // Function to send email confirmation
   const handleSendEmail = useCallback(() => {
+    console.log('Attempting to send email...');
     if (!userEmail) {
       console.error('User email is missing.');
       alert('User is not logged in or email is missing.');
@@ -43,50 +46,62 @@ const Razorpay = () => {
       message: `Your payment of INR ${totalBill} was successful! Thank you for your order.`,
     };
 
-    emailjs
+    console.log('Template parameters:', templateParams);
+
+    return emailjs
       .send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
       .then((response) => {
         console.log('Email sent successfully:', response);
         alert(`Email confirmation sent successfully to ${userEmail}!`);
+        return true; // Indicate success
       })
       .catch((error) => {
         console.error('Failed to send email:', error);
-        alert('Failed to send email confirmation.');
+        alert('Failed to send email confirmation. Check console for details.');
+        return false; // Indicate failure
       });
   }, [userEmail, totalBill, emailJsServiceId, emailJsTemplateId, emailJsUserId]);
 
-  useEffect(() => {
-    const handlePayment = () => {
-      const options = {
-        key: razorpayKey,
-        amount: totalBill * 100,
-        currency: 'INR',
-        name: 'Velvet & Whisk',
-        description: 'Thank you for your order!',
-        image: 'https://your_logo_url.com/logo.png',
-        handler: (response) => {
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-          handleSendEmail();
-          navigate('/layout');
-        },
-        prefill: {
-          name: 'Durva Kadam',
-          email: userEmail || 'durvakadam204@gmail.com',
-          contact: '8828174914',
-        },
-        notes: { address: 'Shantivan' },
-        theme: { color: '#F37254' },
-      };
+  // Function to handle Razorpay payment
+  const handlePayment = useCallback(() => {
+    console.log('Initiating payment...');
+    const options = {
+      key: razorpayKey,
+      amount: totalBill * 100,
+      currency: 'INR',
+      name: 'Velvet & Whisk',
+      description: 'Thank you for your order!',
+      image: 'https://your_logo_url.com/logo.png',
+      handler: async (response) => {
+        console.log('Payment successful response:', response);
+        alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
 
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-      setLoading(false);
+        const emailSuccess = await handleSendEmail(); // Send email after payment
+        if (emailSuccess) {
+          navigate('/payment-success', { state: { userEmail } }); // Navigate after email is sent
+        }
+      },
+      prefill: {
+        name: 'Durva Kadam',
+        email: userEmail || 'durvakadam204@gmail.com',
+        contact: '8828174914',
+      },
+      notes: { address: 'Shantivan' },
+      theme: { color: '#F37254' },
     };
 
-    if (userEmail) handlePayment();
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+    setLoading(false);
+  }, [razorpayKey, totalBill, handleSendEmail, userEmail, navigate]);
 
+  // Check userEmail and initiate payment
+  useEffect(() => {
+    if (userEmail) {
+      handlePayment();
+    }
     return () => setLoading(true);
-  }, [razorpayKey, totalBill, navigate, handleSendEmail, userEmail]);
+  }, [userEmail, handlePayment]);
 
   return (
     <div className="payment-container">
