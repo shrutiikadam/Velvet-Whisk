@@ -1,25 +1,38 @@
-// PAGE ON ABOUT OF EVERY ITWM IN HOME PAGE and HOME PAGE ITEMS TOO
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import iconCart from '../assets/images/iconCart.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../stores/cart';
+import Cookies from 'js-cookie'; // Ensure you have this installed
+import CookieConsent from './cookie'; // Import the CookieConsent component
 
 const ProductCart = (props) => {
     const carts = useSelector(store => store.cart.items);
     const { id, name, price, image, slug } = props.data;
     const dispatch = useDispatch();
+    const [showCookieConsent, setShowCookieConsent] = useState(false);
+
+    useEffect(() => {
+        const cookieConsent = Cookies.get('cookieConsent');
+        if (!cookieConsent) {
+            setShowCookieConsent(true); // Show cookie consent if not already accepted
+        }
+    }, []);
 
     const handleAddToCart = () => {
         dispatch(addToCart({
             productId: id,
             quantity: 1,
         }));
-    }
+    };
+
+    const handleCloseConsent = () => {
+        setShowCookieConsent(false);
+    };
 
     return (
         <div className='bg-white p-5 rounded-xl shadow-sm mt-6'>
-            <Link to={`/${slug}`}> {/* Ensure this points correctly to the product detail page */}
+            <Link to={`/${slug}`}>
                 <img src={image} alt={name} className='w-full h-80 object-cover object-top' 
                     style={{ filter: 'drop-shadow(10px 25px 20px #0005)' }} />
             </Link>
@@ -33,8 +46,9 @@ const ProductCart = (props) => {
                     Add To Cart
                 </button>
             </div>
+            {showCookieConsent && <CookieConsent onClose={handleCloseConsent} />}
         </div>
-    )
+    );
 }
 
 export default ProductCart;

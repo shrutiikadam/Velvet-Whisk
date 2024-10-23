@@ -74,7 +74,6 @@ const Razorpay = () => {
       image: 'https://your_logo_url.com/logo.png',
       handler: async (response) => {
         console.log('Payment successful response:', response);
-        alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
 
         const emailSuccess = await handleSendEmail(); // Send email after payment
         if (emailSuccess) {

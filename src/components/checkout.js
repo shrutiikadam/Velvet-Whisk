@@ -22,29 +22,29 @@ const Checkout = () => {
     };
 
     return (
-        <div className="relative">
+        <div className="relative bg-gradient-to-r from-indigo-200 to-purple-200 min-h-screen py-10">
             {/* Go Back Button positioned in the top left corner */}
             <button 
-                className="absolute top-5 left-5 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition duration-300 text-lg z-10" 
+                className="absolute top-5 left-5 bg-white shadow-lg text-gray-800 px-4 py-2 rounded-full hover:bg-gray-100 transition duration-300 text-lg z-10 transform hover:scale-105"
                 onClick={handleGoBack}
             >
                 Back to Home
             </button>
 
-            <div className="checkout-container max-w-3xl mx-auto p-6 bg-gray-100 shadow-md rounded-lg mt-10">
-                <h2 className="checkout-title text-4xl font-bold mb-6 text-gray-800 text-center">Checkout</h2>
+            <div className="checkout-container max-w-3xl mx-auto p-6 bg-white shadow-2xl rounded-xl mt-10 transform hover:scale-105 transition duration-300">
+                <h2 className="checkout-title text-3xl font-bold mb-4 text-gray-800 text-center">Checkout</h2>
 
-                <div className="mb-6">
-                    <h3 className="text-2xl font-semibold mb-4 text-gray-800">Selected Items:</h3>
-                    <div className="border border-gray-300 rounded-lg p-4 bg-white shadow-md"> {/* Box for items */}
+                <div className="mb-4">
+                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Selected Items:</h3>
+                    <div className="border border-gray-300 rounded-lg p-3 bg-gray-50 shadow-md">
                         <ul>
                             {cartItems.length > 0 ? (
                                 cartItems.map((item, index) => {
                                     // Log each item for debugging
                                     console.log(`Item ${index}:`, item); 
                                     return (
-                                        <li key={index} className="items border-b border-gray-200 py-4 flex items-center last:border-b-0 hover:bg-gray-50 transition duration-200">
-                                            <img src={item.image} alt={item.name} className='w-20 h-20 mr-4 object-cover rounded-md shadow-sm' />
+                                        <li key={index} className="items border-b border-gray-200 py-3 flex items-center last:border-b-0 hover:bg-gray-100 transition duration-200">
+                                            <img src={item.image} alt={item.name} className='w-16 h-16 mr-3 object-cover rounded-md shadow-sm transform hover:scale-105 transition duration-300' />
                                             <div className="flex flex-col">
                                                 <span className="font-medium text-gray-900 text-lg">{item.name}</span>
                                                 <span className="text-sm text-gray-600">Price: ₹{item.price}</span>
@@ -61,11 +61,19 @@ const Checkout = () => {
                     </div>
                 </div>
 
-                <h3 className="text-3xl font-semibold mb-6 text-gray-900 text-center">Total Bill: ₹{totalBill.toFixed(2)}</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-gray-900 text-center">Total Bill: ₹{totalBill.toFixed(2)}</h3>
 
-                <div className="flex space-x-6 mt-5 justify-center">
-                    <button className="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition duration-300 text-lg" onClick={handleProceedToPayment}>
-                        Proceed to Payment
+                {/* Checkout Button Container with Creative Styles */}
+                <div className="flex space-x-4 mt-4 justify-center">
+                    <button 
+                        className="bg-green-600 text-white px-5 py-2 rounded-full shadow-lg hover:bg-green-700 transition duration-300 text-lg transform hover:scale-105 flex items-center justify-center"
+                        style={{
+                            background: 'linear-gradient(to right, #4caf50, #66bb6a)',
+                            boxShadow: '0 4px 15px rgba(0, 128, 0, 0.4)',
+                        }}
+                        onClick={handleProceedToPayment}
+                    >
+                        <span className="text-lg font-semibold">Proceed to Payment</span>
                     </button>
                 </div>
             </div>
