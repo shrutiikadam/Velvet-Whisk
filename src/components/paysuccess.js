@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { FaCheckCircle } from 'react-icons/fa'; // Importing a check circle icon
 import { GiMilkCarton } from 'react-icons/gi'; // Milk carton icon for the milk theme
 import Confetti from 'react-confetti'; // Importing Confetti component
+import bgmilk from '../components/bgmilk.png'; // Importing the background image
 
 const PaymentSuccess = () => {
   const location = useLocation();
@@ -22,13 +23,12 @@ const PaymentSuccess = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Stop confetti and fade out after 5 seconds
+  // Stop confetti and fade out after 10 seconds
   useEffect(() => {
-    
     const timer = setTimeout(() => {
       setFadeOut(true); // Start fading out
       setTimeout(() => setShowConfetti(false), 1000); // Hide confetti after fade out
-    }, 10000); // 5 seconds
+    }, 10000); // 10 seconds
 
     return () => clearTimeout(timer); // Clean up the timer when component unmounts
   }, []);
@@ -44,7 +44,14 @@ const PaymentSuccess = () => {
   const userName = extractFirstNameFromEmail(userEmail);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-purple-200 to-blue-300 relative">
+    <div
+      className="flex items-center justify-center h-screen bg-cover bg-center"
+      style={{ 
+        backgroundImage: `url(${bgmilk})`, 
+        backgroundSize: '120%', // Zoom out the background image
+        backgroundPosition: 'center' // Center the background image
+      }} 
+    >
       {/* Confetti Effect */}
       {showConfetti && (
         <div
@@ -57,11 +64,10 @@ const PaymentSuccess = () => {
         </div>
       )}
 
-      <div className="bg-white shadow-lg rounded-lg p-12 max-w-lg text-center relative transform transition-transform duration-500 hover:scale-105 hover:shadow-xl">
+      <div className="bg-gray-100 shadow-lg rounded-lg p-12 max-w-lg text-center relative transform transition-transform duration-500 hover:scale-105 hover:shadow-xl bg-opacity-90">
         <FaCheckCircle className="text-green-400 text-7xl mb-4 animate-bounce" />
         {/* Milk Carton Icon for fun */}
         <GiMilkCarton className="text-pink-400 text-8xl mb-9 mx-auto" />
-
 
         <h1 className="text-5xl font-extrabold text-gray-800 mb-4 drop-shadow-lg">Order Success!</h1>
         <p className="text-2xl text-gray-700 mb-6">

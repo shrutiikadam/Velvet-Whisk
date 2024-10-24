@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import bgmilk from '../components/bgmilk.png'; // Importing the background image
 
 const Checkout = () => {
     const location = useLocation();
@@ -22,10 +23,13 @@ const Checkout = () => {
     };
 
     return (
-        <div className="relative bg-gradient-to-r from-indigo-200 to-purple-200 min-h-screen py-10">
+        <div
+            className="relative min-h-screen py-10 bg-cover bg-center"
+            style={{ backgroundImage: `url(${bgmilk})` }} // Setting bgmilk as background
+        >
             {/* Go Back Button positioned in the top left corner */}
             <button 
-                className="absolute top-5 left-5 bg-white shadow-lg text-gray-800 px-4 py-2 rounded-full hover:bg-gray-100 transition duration-300 text-lg z-10 transform hover:scale-105"
+                className="absolute top-5 left-5 bg-black shadow-lg text-white px-4 py-2 rounded-full hover:bg-gray-100 transition duration-300 text-lg z-10 transform hover:scale-105"
                 onClick={handleGoBack}
             >
                 Back to Home

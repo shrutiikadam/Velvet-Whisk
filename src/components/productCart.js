@@ -15,7 +15,10 @@ const ProductCart = (props) => {
     useEffect(() => {
         const cookieConsent = Cookies.get('cookieConsent');
         if (!cookieConsent) {
+            console.log("Cookie consent not found, showing popup...");
             setShowCookieConsent(true); // Show cookie consent if not already accepted
+        } else {
+            console.log("Cookie consent already accepted: ", cookieConsent);
         }
     }, []);
 
@@ -24,9 +27,22 @@ const ProductCart = (props) => {
             productId: id,
             quantity: 1,
         }));
+        console.log("Product added to cart:", { productId: id, quantity: 1 });
     };
 
     const handleCloseConsent = () => {
+        setShowCookieConsent(false);
+        console.log("Cookie consent popup closed.");
+    };
+
+    const handleAcceptCookies = () => {
+        Cookies.set('cookieConsent', 'true', { expires: 365 });
+        console.log("Cookies accepted and saved.");
+        setShowCookieConsent(false);
+    };
+
+    const handleDeclineCookies = () => {
+        console.log("Cookies declined.");
         setShowCookieConsent(false);
     };
 
@@ -46,7 +62,13 @@ const ProductCart = (props) => {
                     Add To Cart
                 </button>
             </div>
-            {showCookieConsent && <CookieConsent onClose={handleCloseConsent} />}
+            {showCookieConsent && (
+                <CookieConsent 
+                    onClose={handleCloseConsent} 
+                    onAccept={handleAcceptCookies} 
+                    onDecline={handleDeclineCookies} 
+                />
+            )}
         </div>
     );
 }

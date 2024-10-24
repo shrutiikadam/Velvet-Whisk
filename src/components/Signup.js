@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { auth, googleProvider } from "../firebaseConfig";
 import { createUserWithEmailAndPassword, sendEmailVerification, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa"; 
+import bgmilk from '../components/bgmilk.png'; 
+import cansImage from '../components/cans.png'; // Importing the cans image
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +35,7 @@ const SignUp = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       alert("Google signup successful!");
-      navigate("/home");  // Redirect to homepage
+      navigate("/home");
     } catch (error) {
       alert(`Google Sign-In Error: ${error.message}`);
     }
@@ -47,31 +50,31 @@ const SignUp = () => {
   };
 
   return (
-    <div style={{
-      display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: 'linear-gradient(135deg, #dfe9f3, #ffffff)', padding: '20px', fontFamily: "'Roboto', sans-serif"
-    }}>
-      <button
-        type="button" // Prevent default form submission
-        onClick={handleGoHome}
-        style={{
-          position: 'absolute', top: '20px', left: '20px', backgroundColor: '#000000',
-          color: 'white', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '1rem',
-          cursor: 'pointer', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', transition: 'background-color 0.3s'
-        }}
-      >
-        Back to Home
-      </button>
-      
-      <div style={{ textAlign: 'center' }}>
-        <div style={{ marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '3rem', color: '#4a4a8a', fontWeight: '800', lineHeight: '1.2', letterSpacing: '1px', textAlign: 'left' }}>
-            {/* Add any welcome message here if needed */}
-          </h1>
-        </div>
-        <div style={{
-          backgroundColor: '#fff', padding: '40px', borderRadius: '15px', boxShadow: '0 15px 35px rgba(0, 0, 0, 0.15)', maxWidth: '450px', width: '100%', animation: 'fadeIn 0.6s ease-in-out'
-        }}>
-          <h2 style={{ fontSize: '1.6rem', color: '#333', marginBottom: '30px' }}>SIGN UP</h2>
+    <div
+      className="flex justify-center items-center min-h-screen bg-cover bg-center relative"
+      style={{ backgroundImage: `url(${bgmilk})` }} // Setting bgmilk as background
+    >
+      {/* Left side with cans image */}
+      <div className="hidden md:flex w-1/2 h-full">
+        <img
+          src={cansImage}
+          alt="Cans Image"
+          className="object-cover w-full h-full"
+        />
+      </div>
+
+      {/* Right side with signup form */}
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
+        <button
+          type="button"
+          onClick={handleGoHome}
+          className="absolute top-5 left-5 bg-black text-white rounded-md px-5 py-2 text-lg shadow-md transition duration-300 hover:bg-gray-800"
+        >
+          Back to Home
+        </button>
+        <div className="bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-md mx-auto transition-transform transform hover:scale-105 animate-fadeIn">
+        <h2 className="text-2xl text-gray-800 mb-8 text-center">SIGN UP</h2>
+
           <form onSubmit={handleSubmit}>
             <input
               type="email"
@@ -79,9 +82,7 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{
-                width: '100%', padding: '12px', marginBottom: '20px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '1rem', backgroundColor: '#f9f9f9'
-              }}
+              className="w-full p-3 mb-5 border border-gray-300 rounded-md text-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
             <input
               type="password"
@@ -89,9 +90,7 @@ const SignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{
-                width: '100%', padding: '12px', marginBottom: '20px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '1rem', backgroundColor: '#f9f9f9'
-              }}
+              className="w-full p-3 mb-5 border border-gray-300 rounded-md text-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
             <input
               type="password"
@@ -99,25 +98,22 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              style={{
-                width: '100%', padding: '12px', marginBottom: '20px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '1rem', backgroundColor: '#f9f9f9'
-              }}
+              className="w-full p-3 mb-5 border border-gray-300 rounded-md text-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
             />
-            <button type="submit" style={{
-              width: '100%', padding: '12px', backgroundColor: '#31a027', color: 'white', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', marginTop: '20px'
-            }}>
+            <button type="submit" className="w-full p-3 bg-green-600 text-white rounded-md text-lg cursor-pointer transition duration-300 hover:bg-green-700">
               Sign Up
             </button>
           </form>
+
           <button
             onClick={handleGoogleSignUp}
-            style={{
-              width: '100%', padding: '12px', backgroundColor: '#db4437', color: 'white', border: 'none', borderRadius: '5px', fontSize: '1rem', cursor: 'pointer', marginTop: '20px'
-            }}>
-            Continue with Google
+            className="w-full p-3 bg-red-600 text-white rounded-md text-lg flex items-center justify-center mt-5 transition duration-300 hover:bg-red-700"
+          >
+            <FaGoogle className="mr-2 text-xl" /> Continue with Google
           </button>
-          <p style={{ textAlign: 'center', marginTop: '20px', fontSize: '0.9rem', color: '#666' }}>
-            Already have an account? <a href="#" onClick={handleLogin} style={{ color: '#007bff', textDecoration: 'none' }}>Login</a>
+
+          <p className="text-center mt-5 text-gray-600 text-sm">
+            Already have an account? <a href="#" onClick={handleLogin} className="text-blue-500 hover:underline">Login</a>
           </p>
         </div>
       </div>

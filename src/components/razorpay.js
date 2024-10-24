@@ -49,7 +49,7 @@ const Razorpay = () => {
     console.log('Template parameters:', templateParams);
 
     return emailjs
-      .send(emailJsServiceId, emailJsTemplateId, templateParams, emailJsUserId)
+      .send("service_dxp7k7a", "template_z7ntjir", templateParams, "WfUPqJH0cRzftZSDI")
       .then((response) => {
         console.log('Email sent successfully:', response);
         alert(`Email confirmation sent successfully to ${userEmail}!`);
@@ -60,7 +60,7 @@ const Razorpay = () => {
         alert('Failed to send email confirmation. Check console for details.');
         return false; // Indicate failure
       });
-  }, [userEmail, totalBill, emailJsServiceId, emailJsTemplateId, emailJsUserId]);
+  }, [userEmail, totalBill, "service_dxp7k7a", "template_z7ntjir", "WfUPqJH0cRzftZSDI"]);
 
   // Function to handle Razorpay payment
   const handlePayment = useCallback(() => {

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { auth, googleProvider } from "../firebaseConfig"; 
+import { auth, googleProvider } from "../firebaseConfig";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa"; // Importing Google icon from react-icons
+import { FaGoogle } from "react-icons/fa";
+import bgmilk from '../components/bgmilk.png'; // Importing the background image
+import cansImage from '../components/cans.png'; // Importing the cans image
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,22 +46,29 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-pink-200 to-blue-200 p-5 font-sans">
-      <button
-        type="button"
-        onClick={handleGoHome}
-        className="absolute top-5 left-5 bg-black text-white rounded-md px-5 py-2 text-lg shadow-md transition duration-300 hover:bg-gray-800"
-      >
-        Back to Home
-      </button>
-      <div className="text-center">
-        <div className="mb-10">
-          <h1 className="text-5xl text-gray-700 font-extrabold leading-tight tracking-wide text-left">
-            {/* <span className="text-2xl text-gray-600">Welcome</span>
-            <span className="text-gray-400">Back!</span> */}
-          </h1>
-        </div>
-        <div className="bg-white p-10 rounded-2xl shadow-lg max-w-md mx-auto transition-transform transform hover:scale-105 animate-fadeIn">
+    <div
+      className="flex justify-center items-center min-h-screen bg-cover bg-center relative"
+      style={{ backgroundImage: `url(${bgmilk})` }}
+    >
+      {/* Left side with cans image */}
+      <div className="hidden md:flex w-1/2 h-full">
+        <img
+          src={cansImage}
+          alt="Cans Image"
+          className="object-cover w-full h-full"
+        />
+      </div>
+
+      {/* Right side with login form */}
+      <div className="flex flex-col justify-center items-center w-full md:w-1/2 p-8">
+        <button
+          type="button"
+          onClick={handleGoHome}
+          className="absolute top-5 left-5 bg-black text-white rounded-md px-5 py-2 text-lg shadow-md transition duration-300 hover:bg-gray-800"
+        >
+          Back to Home
+        </button>
+        <div className="text-center bg-white bg-opacity-80 p-10 rounded-2xl shadow-lg max-w-md mx-auto transition-transform transform hover:scale-105 animate-fadeIn">
           <h2 className="text-2xl text-gray-800 mb-8">LOGIN</h2>
           <form onSubmit={handleLogin}>
             <input
